@@ -1,0 +1,120 @@
+.App {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.App-header {
+  background: linear-gradient(to right bottom, #2a82ad, #76337a);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+}
+
+.currentCityContainer {
+  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
+}
+
+.currentCityWeather {
+  font-size: 2em;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background:rgba(255, 255, 255, 0.1);
+  border-radius: 1.3em;
+  padding: 30px 0;
+}
+
+.currentCityWeather .details {
+  margin-top: 20px;
+  font-size: 0.65em;
+}
+
+.currentCityName {
+  font-size: 1.21em;
+}
+
+.currentCityForecast {
+  margin-bottom: 85px; 
+}
+
+.forecast {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1.3em;
+  background:rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  margin-bottom: 13px;
+}
+
+#toCityOverviewBtn {
+  position: fixed;
+  left: 15px;
+  bottom: 15px;
+  border-radius: 15px;
+  padding: 15px 20px;
+  box-shadow: 0px 5px 5px #000;
+}
+
+.floatleft {
+  float: left;
+}
+
+.floatright {
+  float: right;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#searchbar {
+  background-color:rgba(255, 255, 255, 0.3);
+  border-radius: 1em;
+  color: white;
+}
+
+#searchbar::placeholder {
+  color: white;
+}
+
+.collapsed .details {
+  height: 0;
+  overflow: hidden;
+}
+
+.clickable {
+  border: rgb(161, 181, 226) 4px solid;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+/* When bootstrap margin classes don't work none */
+.scootALittleToTheRight {
+  margin-left: 15px;
+}
+
+.addspace {
+  margin-left: 5px;
+}
+
+.rightNow {
+  margin: 0;
+  font-size: 0.6em;
+}
