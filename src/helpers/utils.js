@@ -140,29 +140,32 @@ export function handleWeatherResponse(response) {
             wind:           currentHour.instant.details.wind_speed,
             humidity:       currentHour.instant.details.relative_humidity
         },
-        nextHours: {
-            one: {
+        nextHours: [
+            {
+                hoursUntil:     1,
                 temperature:    next1Hours.instant.details.air_temperature,
                 icon:           getWeatherIcon(next1Hours.next_1_hours.summary.symbol_code),
                 wind:           currentHour.instant.details.wind_speed,
                 humidity:       currentHour.instant.details.relative_humidity,
                 precipitation:  currentHour.next_1_hours.details.precipitation_amount
             },
-            six: {
+            {
+                hoursUntil:     6,
                 temperature:    next6Hours.instant.details.air_temperature,
                 icon:           getWeatherIcon(next6Hours.next_1_hours.summary.symbol_code),
                 wind:           next6Hours.instant.details.wind_speed,
                 humidity:       next6Hours.instant.details.relative_humidity,
                 precipitation:  currentHour.next_6_hours.details.precipitation_amount
             },
-            twelve: {
+            {
+                hoursUntil:     12,
                 temperature:    next12Hours.instant.details.air_temperature,
                 icon:           getWeatherIcon(next12Hours.next_1_hours.summary.symbol_code),
                 wind:           next12Hours.instant.details.wind_speed,
                 humidity:       next12Hours.instant.details.relative_humidity,
                 precipitation:  next6Hours.next_6_hours.details.precipitation_amount
             },
-        },
+        ],
         nextDays: next7Days
     }
 }

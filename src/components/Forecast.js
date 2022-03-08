@@ -14,9 +14,7 @@ export default function Forecast(props) {
         return (
             <Col key={index} className="forecast">
                 <Row>
-                    <Col>
-                        <span className="floatleft bold">{getFormattedDate(item.date)}</span>
-                    </Col>
+                    <span className="floatleft bold">{getFormattedDate(item.date)}</span>
                 </Row>
                 <Row className="details d-flex flex-row justify-content-around mt-2">
                     <Col>
