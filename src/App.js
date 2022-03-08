@@ -5,7 +5,7 @@ import City from './components/City';
 import cityData from './assets/norway_cities.json'
 import React, { useEffect, useState, useCallback } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { handleWeatherResponse } from './helpers/Weather';
+import { handleWeatherResponse } from './helpers/utils';
 
 const cities = cityData.records.sort((a, b) => b.fields.population - a.fields.population)
   .map(city => ({
