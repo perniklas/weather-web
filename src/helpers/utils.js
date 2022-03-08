@@ -167,7 +167,7 @@ export function handleWeatherResponse(response) {
     }
 }
 
-export function formatDate(pDate, displayHour = false) {
+export function getFormattedDate(pDate, displayHour = false) {
     const days = {
         0: 'Sunday',
         1: 'Monday',
@@ -182,10 +182,15 @@ export function formatDate(pDate, displayHour = false) {
     let month = pDate.getMonth() < 9 ? '0' + (pDate.getMonth() + 1) : pDate.getMonth() + 1;
     let dateString = `${days[pDate.getDay()]} ${date}.${month}`;
     if (displayHour) {
-        dateString += `, ${pDate.getHours()}:00`;
+        dateString += `, ${getFormattedHours(pDate)}`;
     }
     return dateString;
 };
+
+export function getFormattedHours(date) {
+    let hours = date.getHours();
+    return `${hours < 10 ? '0' + hours : hours}:00`;
+}
 
 export function getDateWithHoursAdded(date, hours) {
     date.setHours(date.getHours() + hours);

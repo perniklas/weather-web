@@ -6,7 +6,7 @@ import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
 
 const CitiesOverview = (props) => {
     // props.allCities.forEach(async city => {
-    //      await fetch(`https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${city.latitude}&lon=${city.longitude}`)
+    //      await fetch(`${props.url}lat=${city.latitude}&lon=${city.longitude}`)
     //     .then(data => data.json())
     //     .then(result => {
     //         city.weather = handleWeatherResponse(result);

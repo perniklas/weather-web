@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col } from 'react-bootstrap'
-import { faCloudShowersHeavy, faTint, faWind } from '@fortawesome/free-solid-svg-icons';
-import { formatDate, getDateWithHoursAdded } from '../helpers/utils';
+import { faUmbrella, faTint, faWind } from '@fortawesome/free-solid-svg-icons';
+import { getFormattedHours, getFormattedDate, getDateWithHoursAdded } from '../helpers/utils';
 
 export default function Weather(props) {
     const weather       = props.weatherData;
@@ -17,7 +17,7 @@ export default function Weather(props) {
                     <h5 className="currentCityName">{props.cityName}</h5>
                 </Row>
                 <Row>
-                    <h5>{formatDate(new Date(), true)}</h5>
+                    <h5>{getFormattedDate(new Date(), true)}</h5>
                 </Row>
                 <Row className="mt-3">
                     <span className="currentCity-weather">
@@ -37,11 +37,11 @@ export default function Weather(props) {
                 </Row>
                 <Row className="details mt-5">
                     <Col>
-                        <span>{`${getDateWithHoursAdded(new Date(), 1).getHours()}:00:`}</span>
+                        <span>{`${getFormattedHours(getDateWithHoursAdded(new Date(), 1))}`}</span>
                     </Col>
                     <Col>
                         <div className="d-flex flex-row justify-content-end">
-                            <FontAwesomeIcon icon={faCloudShowersHeavy} className="mt-2"></FontAwesomeIcon>
+                            <FontAwesomeIcon icon={faUmbrella} className="mt-2"></FontAwesomeIcon>
                             <span className="addspace">{weather.nextHours.one.precipitation}mm</span>
                         </div>
                     </Col>
@@ -51,13 +51,14 @@ export default function Weather(props) {
                         </div>
                     </Col>
                 </Row>
+                <hr></hr>
                 <Row className="details">
                     <Col>
-                        <span>{`${getDateWithHoursAdded(new Date(), 6).getHours()}:00:`}</span>
+                        <span>{`${getFormattedHours(getDateWithHoursAdded(new Date(), 6))}`}</span>
                     </Col>
                     <Col>
                         <div className="d-flex flex-row justify-content-end">
-                            <FontAwesomeIcon icon={faCloudShowersHeavy} className="mt-2"></FontAwesomeIcon>
+                            <FontAwesomeIcon icon={faUmbrella} className="mt-2"></FontAwesomeIcon>
                             <span className="addspace">{weather.nextHours.six.precipitation}mm</span>
                         </div>
                     </Col>
@@ -67,13 +68,14 @@ export default function Weather(props) {
                         </div>
                     </Col>
                 </Row>
+                <hr></hr>
                 <Row className="details">
                     <Col>
-                        <span>{`${getDateWithHoursAdded(new Date(), 12).getHours()}:00:`}</span>
+                        <span>{`${getFormattedHours(getDateWithHoursAdded(new Date(), 12))}`}</span>
                     </Col>
                     <Col>
                         <div className="d-flex flex-row justify-content-end">
-                            <FontAwesomeIcon icon={faCloudShowersHeavy} className="mt-2"></FontAwesomeIcon>
+                            <FontAwesomeIcon icon={faUmbrella} className="mt-2"></FontAwesomeIcon>
                             <span className="addspace">{weather.nextHours.twelve.precipitation}mm</span>
                         </div>
                     </Col>

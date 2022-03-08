@@ -114,7 +114,8 @@ function App() {
             <CitiesOverview 
               parentCallback={callback}
               allCities={foundCities}
-              searchFilter={filterSearch}>
+              searchFilter={filterSearch}
+              url={baseLocURL}>
             </CitiesOverview>
           )
         }
