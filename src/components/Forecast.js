@@ -16,9 +16,18 @@ export default function Forecast(props) {
                 <Row>
                     <span className="floatleft bold">{getFormattedDate(item.date)}</span>
                 </Row>
-                <Row className="details d-flex flex-row justify-content-around mt-2">
+                <Row className="my-2">
                     <Col className="details mt-2">
-                        <Row>
+                        <Row className="forecastweather">
+                            <span>{item.description}</span>
+                        </Row>
+                        <Row className="forecastweather">
+                            <span>
+                                <FontAwesomeIcon icon={item.icon}></FontAwesomeIcon>
+                                <span className="addspace">{` ${item.temperature.max.toFixed(1)}`} ºC</span>
+                            </span>
+                        </Row>
+                        <Row className="mt-3">
                             <Col>
                                 <span className="floatright">Precipitation:</span>
                             </Col>
@@ -29,21 +38,6 @@ export default function Forecast(props) {
                                     </Col>
                                     <Col>
                                         <span className="floatleft">{item.precipitation}mm</span>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row className="mt-2">
-                            <Col>
-                                <span className="floatright">Weather:</span>
-                            </Col>
-                            <Col>
-                                <Row>
-                                    <Col xs={4}>
-                                        <FontAwesomeIcon icon={item.icon}></FontAwesomeIcon>
-                                    </Col>
-                                    <Col>
-                                        <span className="floatleft">{` ${item.temperature.max.toFixed(1)}`} ºC</span>
                                     </Col>
                                 </Row>
                             </Col>

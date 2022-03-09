@@ -61,6 +61,10 @@
   margin-bottom: 13px;
 }
 
+.forecastweather {
+  font-size: 1.2em;
+}
+
 #toCityOverviewBtn {
   position: fixed;
   left: 15px;

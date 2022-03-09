@@ -97,8 +97,35 @@ const weathers = {
     "heavysnowshowers_polartwilight": faSnowflake
 }
 
-function getWeatherIcon(weather) {
-    return weathers[weather];
+function getWeatherIcon(weatherStr) {
+    return weathers[weatherStr];
+}
+
+function getWeatherDescription(weatherStr) {
+    let weather = '';
+    if (weatherStr.indexOf('partlycloudy') > -1) {
+        weather = 'Partly cloudy';
+    } else if (weatherStr.indexOf('cloudy') > -1) {
+        weather = 'Clouds';
+    } else if (weatherStr.indexOf('fair') > -1) {
+        weather = 'Fair';
+    } else if (weatherStr.indexOf('snow') > -1) {
+        weather = 'Snow';
+    } else if (weatherStr.indexOf('rain') > -1) {
+        weather = 'Rain';
+    } else if (weatherStr.indexOf('clearsky') > -1) {
+        weather = 'Clear';
+    }
+
+    if (weatherStr.indexOf('shower') > -1) {
+        weather += 'showers';
+    }
+
+    if (weatherStr.indexOf('thunder') > -1) {
+        weather += ' and thunder';
+    }
+
+    return weather;
 }
 
 export function handleWeatherResponse(response) {
@@ -129,7 +156,8 @@ export function handleWeatherResponse(response) {
             date:           new Date(dayWeather.time),
             wind:           dayWeather.data.instant.details.wind_speed,
             humidity:       dayWeather.data.instant.details.relative_humidity,
-            precipitation:  dayWeather.data.next_6_hours.details.precipitation_amount
+            precipitation:  dayWeather.data.next_6_hours.details.precipitation_amount,
+            description:    getWeatherDescription(dayWeather.data.next_6_hours.summary.symbol_code)
         });
     }
 
@@ -138,7 +166,8 @@ export function handleWeatherResponse(response) {
             temperature:    currentHour.instant.details.air_temperature,
             icon:           getWeatherIcon(currentHour.next_1_hours.summary.symbol_code),
             wind:           currentHour.instant.details.wind_speed,
-            humidity:       currentHour.instant.details.relative_humidity
+            humidity:       currentHour.instant.details.relative_humidity,
+            description:    getWeatherDescription(currentHour.next_1_hours.summary.symbol_code)
         },
         nextHours: [
             {

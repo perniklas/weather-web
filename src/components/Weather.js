@@ -60,10 +60,17 @@ export default function Weather(props) {
                     <h5>{getFormattedDate(new Date(), true)}</h5>
                 </Row>
                 <Row className="mt-3">
-                    <span className="currentCity-weather">
-                        <FontAwesomeIcon icon={weather.currentHour.icon}/>
-                        <span className="scootALittleToTheRight">{temperature}</span>
-                    </span>
+                    <Col>
+                        <Row>
+                            <h5>{weather.currentHour.description}</h5>
+                        </Row>
+                        <Row>
+                            <span className="currentCity-weather">
+                                <FontAwesomeIcon icon={weather.currentHour.icon}/>
+                                <span className="scootALittleToTheRight">{temperature}</span>
+                            </span>
+                        </Row>
+                    </Col>
                 </Row>
                 <Row className="details mt-4 pb-3">
                     <div className="col d-flex flex-row justify-content-center">
