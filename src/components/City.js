@@ -10,7 +10,7 @@ export default function City(props) {
      */
     return (
         <div className="currentCityContainer">
-            <Button variant="light" id="toCityOverviewBtn" onClick={() => props.resetCity(null)}>
+            <Button variant="light" id="toCityOverviewBtn" onClick={() => props.resetCity()}>
                 <FontAwesomeIcon icon={faChevronLeft}></FontAwesomeIcon>
             </Button>
             <Col className="mt-5 w-75 mx-auto">

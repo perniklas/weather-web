@@ -1,6 +1,6 @@
 import './App.css';
 import { Dimmer, Loader } from 'semantic-ui-react';
-import CitiesOverview from './components/AllCities';
+import CitiesOverview from './components/CitiesOverview';
 import City from './components/City';
 import cityData from './assets/norway_cities.json'
 import React, { useEffect, useState, useCallback } from "react";
@@ -20,10 +20,10 @@ function App() {
   const [lat, setLat]             = useState(null);
   const [long, setLong]           = useState(null);
   const [weather, setWeather]     = useState(null);
-  // const [forecast, setForecast]   = useState(null);
   const [currentCity, setCity]    = useState(null);
-  const [useGPS, setGPS]          = useState(true);
+  const [useGPS, setGPS]          = useState(false);
   const [foundCities, setCities]  = useState(cities);
+  const [showCity, setShowCity]   = useState(false);
 
   const callback = useCallback((pCity) => {
     const city = foundCities.filter(c => c.name === pCity)[0];
@@ -31,7 +31,8 @@ function App() {
     setLat(city.latitude);
     setLong(city.longitude);
     setWeather(null);
-  }, [currentCity, weather]);
+    setShowCity(true);
+  }, [foundCities]);
 
   const filterSearch = (e) => {
     const filter = e.target.value;
@@ -46,35 +47,45 @@ function App() {
   };
 
   const reset = useCallback(() => {
+    setShowCity(false);
     setCity(null);
-    setLat(null);
-    setLong(null);
     setWeather(null);
     setCities(cities);
-    setGPS(null);
   }, []);
 
-  async function getWeatherData() {
+  const getWeatherData = useCallback(async () => {
     console.log('fetching weather for ', currentCity);
+    setShowCity(true);
     await fetch(baseLocURL + `lat=${lat}&lon=${long}`)
       .then(data => data.json())
       .then(result => {
         let parsedWeather = handleWeatherResponse(result);
         setWeather(parsedWeather);
       });
-  }
+  }, [currentCity, lat, long]);
 
-  async function getNearestCity() {
-    await fetch(
-      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
-    ).then(data => data.json())
-    .then(result => setCity(result.city));
-  }
+  const getNearestCity = useCallback(async () => {
+    if (!useGPS) {
+      alert("Location permissions have been denied.", "warning");
+    }
+
+    if (lat && long && !currentCity) {
+      await fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
+      ).then(data => data.json())
+      .then(result => {
+        let city = result.city === '' ? result.locality : result.city;
+        setCity(city);
+        setShowCity(true);
+      });
+    }
+  }, [currentCity, lat, long, useGPS]);
 
   function getGeolocation() {
     navigator.geolocation.getCurrentPosition(position => {
       setLat(position.coords.latitude.toFixed(2));
       setLong(position.coords.longitude.toFixed(2));
+      setGPS(true);
     }, error => {
       setLat(null);
       setLong(null);
@@ -83,20 +94,18 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("status: ", lat, long, currentCity, weather);
-    if (lat && long && currentCity && !weather) {
+    console.log("status: ", lat, long, currentCity, weather, useGPS, showCity);
+    if (lat && long && showCity && !weather) {
       getWeatherData();
       return;
     }
     
-    if (useGPS) {
-      getGeolocation();
-    }
+    getGeolocation();
     
-    if (lat && long && !currentCity) {
+    if (lat && long && !currentCity && showCity) {
       getNearestCity();
     }
-  }, [lat, long, currentCity, weather]);
+  }, [lat, long, currentCity, weather, showCity, useGPS, getNearestCity, getWeatherData]);
 
   /**
    * If user has consented to sharing their location, jump straight to weather at user's position.
@@ -105,7 +114,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {currentCity ? (
+        {showCity ? (
           weather ? <City weatherData={weather} name={currentCity} resetCity={reset}/>
             : <Dimmer active>
               <Loader>Loading..</Loader>
@@ -115,7 +124,10 @@ function App() {
               parentCallback={callback}
               allCities={foundCities}
               searchFilter={filterSearch}
-              url={baseLocURL}>
+              url={baseLocURL}
+              selectMyLocation={getNearestCity}
+              useGPS={useGPS}
+            >
             </CitiesOverview>
           )
         }

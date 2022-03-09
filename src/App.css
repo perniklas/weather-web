@@ -82,6 +82,14 @@
   font-weight: bold;
 }
 
+.fa-droplet {
+  color: #c3f9ff;
+}
+
+.precipitation {
+ color: #bac9ff;
+}
+
 #searchbar {
   background-color:rgba(255, 255, 255, 0.3);
   border-radius: 1em;
@@ -92,9 +100,8 @@
   color: white;
 }
 
-.collapsed .details {
-  height: 0;
-  overflow: hidden;
+.detailsHeader {
+  font-size: 0.5em;
 }
 
 .clickable {
@@ -103,6 +110,15 @@
 
 .clickable:hover {
   cursor: pointer;
+}
+
+.mylocation {
+  border: 4px solid rgba(197, 253, 171, 0.5);
+}
+
+.mylocation.disabled {
+  border: 4px solid rgba(179, 179, 179, 0.5);
+  color: rgba(179, 179, 179, 0.5);
 }
 
 /* When bootstrap margin classes don't work none */

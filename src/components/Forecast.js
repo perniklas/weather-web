@@ -17,27 +17,66 @@ export default function Forecast(props) {
                     <span className="floatleft bold">{getFormattedDate(item.date)}</span>
                 </Row>
                 <Row className="details d-flex flex-row justify-content-around mt-2">
-                    <Col>
-                        <Row className="details mt-2">
-                            <div className="col d-flex flex-row justify-content-center">
-                                <FontAwesomeIcon icon={faUmbrella} className="floatright mt-1"></FontAwesomeIcon>
-                                <span className="scootALittleToTheRight">{item.precipitation}mm</span>
-                            </div>
-                            <div className="col d-flex flex-row justify-content-center">
-                                <span className="currentCity-forecast floatright">
-                                    <FontAwesomeIcon icon={item.icon}></FontAwesomeIcon> {item.temperature.max.toFixed(1)} ºC
-                                </span>
-                            </div>
+                    <Col className="details mt-2">
+                        <Row>
+                            <Col>
+                                <span className="floatright">Precipitation:</span>
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col xs={4}>
+                                        <FontAwesomeIcon icon={faUmbrella} className="precipitation mt-1"></FontAwesomeIcon>
+                                    </Col>
+                                    <Col>
+                                        <span className="floatleft">{item.precipitation}mm</span>
+                                    </Col>
+                                </Row>
+                            </Col>
                         </Row>
                         <Row className="mt-2">
-                            <div className="col d-flex flex-row justify-content-center">
-                                <FontAwesomeIcon icon={faTint} className="floatright mt-1"></FontAwesomeIcon>
-                                <span className="scootALittleToTheRight">{item.humidity}%</span>
-                            </div>
-                            <div className="col d-flex flex-row justify-content-center">
-                                <FontAwesomeIcon icon={faWind} className="floatright mt-1"></FontAwesomeIcon>
-                                <span className="scootALittleToTheRight">{item.wind}m/s</span>
-                            </div>
+                            <Col>
+                                <span className="floatright">Weather:</span>
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col xs={4}>
+                                        <FontAwesomeIcon icon={item.icon}></FontAwesomeIcon>
+                                    </Col>
+                                    <Col>
+                                        <span className="floatleft">{` ${item.temperature.max.toFixed(1)}`} ºC</span>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                        <Row className="mt-2">
+                            <Col>
+                                <span className="floatright">Humidity:</span>
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col xs={4}>
+                                        <FontAwesomeIcon icon={faTint} className="humidity mt-1"></FontAwesomeIcon>
+                                    </Col>
+                                    <Col>
+                                        <span className="floatleft">{item.humidity}%</span>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                        <Row className="mt-2">
+                            <Col>
+                                <span className="floatright">Wind:</span>
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col xs={4}>
+                                        <FontAwesomeIcon icon={faWind} className="mt-1"></FontAwesomeIcon>
+                                    </Col>
+                                    <Col>
+                                        <span className="floatleft">{item.wind}m/s</span>
+                                    </Col>
+                                </Row>
+                            </Col>
                         </Row>
                     </Col>
                 </Row>

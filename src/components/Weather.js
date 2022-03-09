@@ -7,7 +7,22 @@ export default function Weather(props) {
     const weather       = props.weatherData;
     const temperature   = `${ props.weatherData.currentHour.temperature} ºC`;
     
-    let nextHours = [];
+    let nextHours = [
+        <div key={999} className="mt-3">
+            <Row className="detailsHeader">
+                <Col>
+                    <span>Time</span>
+                </Col>
+                <Col>
+                    <span>Precip.</span>
+                </Col>
+                <Col>
+                    <span>Temp.</span>
+                </Col>
+            </Row>
+            <hr></hr>
+        </div>
+    ];
     weather.nextHours.forEach((hour, i) => {
         nextHours.push(
             <div key={i}>
@@ -17,7 +32,7 @@ export default function Weather(props) {
                     </Col>
                     <Col>
                         <div className="d-flex flex-row justify-content-end">
-                            <FontAwesomeIcon icon={faUmbrella} className="mt-2"></FontAwesomeIcon>
+                            <FontAwesomeIcon icon={faUmbrella} className="precipitation mt-2"></FontAwesomeIcon>
                             <span className="addspace">{hour.precipitation}mm</span>
                         </div>
                     </Col>
@@ -52,11 +67,11 @@ export default function Weather(props) {
                 </Row>
                 <Row className="details mt-4 pb-3">
                     <div className="col d-flex flex-row justify-content-center">
-                        <FontAwesomeIcon icon={faTint} className="floatright mt-2"></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faTint} className="humidity floatright mt-2"></FontAwesomeIcon>
                         <span className="scootALittleToTheRight">{weather.currentHour.humidity}%</span>
                     </div>
                     <div className="col d-flex flex-row justify-content-center">
-                        <FontAwesomeIcon icon={faWind} className="floatright mt-2"></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faWind} className="wind floatright mt-2"></FontAwesomeIcon>
                         <span className="scootALittleToTheRight">{weather.currentHour.wind}m/s</span>
                     </div>
                 </Row>
